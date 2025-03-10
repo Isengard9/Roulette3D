@@ -7,59 +7,62 @@ using Random = UnityEngine.Random;
 
 namespace NCGames
 {
+    /// <summary>
+    /// Controls the roulette wheel's spinning behavior and animation.
+    /// </summary>
+    [RequireComponent(typeof(Animator))]
     public class RouletteController : MonoBehaviour
     {
         private static readonly int RotateSpeedParameter = Animator.StringToHash("RotateSpeed");
-        public Animator animator;
-        [SerializeField] private float rotateSpeed;
-        private float decreaseAmount;
+        
+        [Header("References")]
+        [SerializeField] private Animator animator;
+        
+        [Header("Spin Configuration")]
         [SerializeField] private Vector2 minMaxRotateSpeed = new Vector2(7f, 10f);
         [SerializeField] private Vector2 minMaxDecreaseAmount = new Vector2(0.1f, 0.5f);
-        private Coroutine spinCoroutine;
+        
+        // Runtime variables
+        private float _rotateSpeed;
+        private float _decreaseAmount;
+        private Coroutine _spinCoroutine;
+        
+        /// <summary>
+        /// Indicates whether the roulette wheel is currently spinning.
+        /// </summary>
+        public bool IsSpinning => _spinCoroutine != null;
 
-        public bool IsSpinning => spinCoroutine != null;
-
-        private void InitializeSpin()
+        #region Unity Lifecycle Methods
+        
+        private void Awake()
         {
-            rotateSpeed = Random.Range(minMaxRotateSpeed.x, minMaxRotateSpeed.y);
-            animator.SetFloat(RotateSpeedParameter, rotateSpeed);
-
-            decreaseAmount = Random.Range(minMaxDecreaseAmount.x, minMaxDecreaseAmount.y);
-        }
-
-        public void StartSpin()
-        {
-            if (spinCoroutine == null)
+            // Ensure animator reference
+            if (animator == null)
             {
-                InitializeSpin();
-                spinCoroutine = StartCoroutine(Spin());
+                animator = GetComponent<Animator>();
             }
-        }
-
-        IEnumerator Spin()
-        {
-            Debug.Log("Spin has started");
-            while (rotateSpeed > 0)
-            {
-                rotateSpeed -= decreaseAmount * Time.deltaTime;
-                animator.SetFloat(RotateSpeedParameter, rotateSpeed);
-
-                yield return new WaitForEndOfFrame();
-            }
-
-            rotateSpeed = 0;
-            animator.SetFloat(RotateSpeedParameter, rotateSpeed);
-            Debug.Log("Spin is over");
-            ServiceContainer.Instance.EventPublisherService.Publish(new OnRouletteStoppedEvent());
-            spinCoroutine = null;
         }
 
         private void OnEnable()
         {
-            ServiceContainer.Instance.EventPublisherService.Subscribe<OnGameStartEvent>(OnGameStart);
+            SubscribeToEvents();
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeFromEvents();
         }
         
-        private void OnDisable()
+        #endregion
+
+        #region Event Management
+        
+        private void SubscribeToEvents()
+        {
+            ServiceContainer.Instance.EventPublisherService.Subscribe<OnGameStartEvent>(OnGameStart);
+        }
+
+        private void UnsubscribeFromEvents()
         {
             ServiceContainer.Instance?.EventPublisherService.Unsubscribe<OnGameStartEvent>(OnGameStart);
         }
@@ -68,5 +71,60 @@ namespace NCGames
         {
             StartSpin();
         }
+        
+        #endregion
+
+        #region Spin Control
+        
+        /// <summary>
+        /// Initializes spin parameters with random values within configured ranges.
+        /// </summary>
+        private void InitializeSpin()
+        {
+            _rotateSpeed = Random.Range(minMaxRotateSpeed.x, minMaxRotateSpeed.y);
+            animator.SetFloat(RotateSpeedParameter, _rotateSpeed);
+
+            _decreaseAmount = Random.Range(minMaxDecreaseAmount.x, minMaxDecreaseAmount.y);
+        }
+
+        /// <summary>
+        /// Starts the roulette spin if not already spinning.
+        /// </summary>
+        public void StartSpin()
+        {
+            if (_spinCoroutine == null)
+            {
+                InitializeSpin();
+                _spinCoroutine = StartCoroutine(SpinRoutine());
+            }
+        }
+
+        /// <summary>
+        /// Handles the spinning behavior, gradually slowing down until stopping.
+        /// </summary>
+        private IEnumerator SpinRoutine()
+        {
+            Debug.Log("Roulette spin started");
+            
+            // Gradually slow down the spin
+            while (_rotateSpeed > 0)
+            {
+                _rotateSpeed -= _decreaseAmount * Time.deltaTime;
+                animator.SetFloat(RotateSpeedParameter, Mathf.Max(0, _rotateSpeed));
+                yield return null;
+            }
+
+            // Ensure rotation is completely stopped
+            _rotateSpeed = 0;
+            animator.SetFloat(RotateSpeedParameter, 0);
+            
+            Debug.Log("Roulette spin completed");
+            
+            // Notify that the roulette has stopped spinning
+            ServiceContainer.Instance.EventPublisherService.Publish(new OnRouletteStoppedEvent());
+            _spinCoroutine = null;
+        }
+        
+        #endregion
     }
 }

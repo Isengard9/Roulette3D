@@ -685,8 +685,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db86f4fbbe5428ebcbc3f7b7aa49490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayButton: {fileID: 416212950}
-  Pockets:
+  playButton: {fileID: 416212950}
+  pockets:
   - {fileID: 1387327661}
   - {fileID: 1500964930}
   - {fileID: 223554455}
@@ -1919,6 +1919,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 3d20b0e7858324e4386b382b62f1c539, type: 2}
   pocketNumberText: {fileID: 416421193}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &83919772
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2122,6 +2124,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 9fbac09ec5003443196c32be20d1fafa, type: 2}
   pocketNumberText: {fileID: 1407633957}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &108264837
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2160,7 +2164,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &113690101
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2267,6 +2271,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: a304a4fec0e9645ff97071a33d806e3f, type: 2}
   pocketNumberText: {fileID: 1849356539}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &117066404
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2728,7 +2734,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounceFactor: 2
   maxSpeed: 10
-  minSpeed: 4
+  minSpeed: 2
+  ballMaterial: {fileID: 13400000, guid: e461efda1165e4aa88b7739976bc5644, type: 2}
+  minInitialSpeed: 2
+  maxInitialSpeed: 5
 --- !u!1 &152085627
 GameObject:
   m_ObjectHideFlags: 0
@@ -3854,6 +3863,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: f4b2656748c904219a6b68bef20a3876, type: 2}
   pocketNumberText: {fileID: 338232904}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &221214383
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3923,6 +3934,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 7430b5560cf244820946283dd694206d, type: 2}
   pocketNumberText: {fileID: 1495850325}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &223554456
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4399,6 +4412,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 137455852774e463f8656d6c13f04d03, type: 2}
   pocketNumberText: {fileID: 1711748004}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &275493851
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5092,6 +5107,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 9b6823f550ace4a9a8e9bc9a64f18306, type: 2}
   pocketNumberText: {fileID: 1557771606}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &302823909
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7314,6 +7331,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 825ff57d0f01e455daedb1788418b659, type: 2}
   pocketNumberText: {fileID: 1826273608}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &413401014
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7675,6 +7694,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 072f3ceb310f84261adf8df35b2b9938, type: 2}
   pocketNumberText: {fileID: 1695149651}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &426335744
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7744,6 +7765,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 5ef5cd6bbce444ada87f4a7c94cfb3a4, type: 2}
   pocketNumberText: {fileID: 687001763}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &434559725
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7947,6 +7970,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 9b53bb5e01b674f65968a30effc77937, type: 2}
   pocketNumberText: {fileID: 1943900245}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &438959395
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10200,6 +10225,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: d0a73df93830446d3bae90f595b1a2c4, type: 2}
   pocketNumberText: {fileID: 1020743582}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &666026738
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10269,6 +10296,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: c2c856920ffd6400db0962245e0456ee, type: 2}
   pocketNumberText: {fileID: 1735292223}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &675692674
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11535,6 +11564,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: cbf34a3fa102b4a18a17a6e2b9136485, type: 2}
   pocketNumberText: {fileID: 801280885}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &778027356
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13415,6 +13446,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 09fb7209dd41a49ec8e509cf984bf8f8, type: 2}
   pocketNumberText: {fileID: 1633154275}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &874585975
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13484,6 +13517,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 3ad49167f27ec4e8e837b794e8714987, type: 2}
   pocketNumberText: {fileID: 696138663}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &876091067
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13953,7 +13988,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 898178600}
-  rotateSpeed: 0
   minMaxRotateSpeed: {x: 7, y: 10}
   minMaxDecreaseAmount: {x: 0.5, y: 1.2}
 --- !u!1 &914713553
@@ -14004,6 +14038,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 80504d87f19544ad48937d36a87f53f6, type: 2}
   pocketNumberText: {fileID: 744133535}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &914713556
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14336,6 +14372,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 59294df53b3704999a219e8997a95d30, type: 2}
   pocketNumberText: {fileID: 403782010}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &940170815
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15039,6 +15077,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 8928b7246486f4dd3a2fe179c3260d79, type: 2}
   pocketNumberText: {fileID: 276672818}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &977279389
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15376,6 +15416,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 5edbdd405dbbb4139bf644c57ae05905, type: 2}
   pocketNumberText: {fileID: 1768663750}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &985564324
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16425,6 +16467,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 11d1e972c22924d67b8dc14fbec886a1, type: 2}
   pocketNumberText: {fileID: 372918303}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &1127919511
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16799,6 +16843,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: acd85c5cd9c1d400685c94c41d64eff4, type: 2}
   pocketNumberText: {fileID: 1128405812}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &1142635153
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16868,6 +16914,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 2c805c2a67438497694f126c59b7258b, type: 2}
   pocketNumberText: {fileID: 1228876550}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &1155308685
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17147,6 +17195,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 78e31a304c5aa49d696db9650faa81b3, type: 2}
   pocketNumberText: {fileID: 143761234}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &1168705772
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18750,6 +18800,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 8c4e7ccd2422349eb85345816c2581bb, type: 2}
   pocketNumberText: {fileID: 1840941721}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &1268386960
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18819,6 +18871,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 7e867422e9bfa43b899d877b2a796f42, type: 2}
   pocketNumberText: {fileID: 1722624632}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &1285985519
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19197,6 +19251,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 02b9e2e2d490b42a389075a5c672b43b, type: 2}
   pocketNumberText: {fileID: 999489614}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &1297106660
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19310,14 +19366,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tokenPopupAnimator: {fileID: 1302754472}
   _tokenText: {fileID: 1008697063}
-  _preAmountText: Total Bet
   _amountText: {fileID: 974657907}
-  totalAmount: 0
   _closeButton: {fileID: 723693099}
+  _preAmountText: Total Bet
+  _tokenUpgradeControllers: []
   _currentBetData:
     betType: 0
     numbersOfBet: 
-  _tokenUpgradeControllers: []
+  _totalAmount: 0
 --- !u!95 &1302754472
 Animator:
   serializedVersion: 5
@@ -20382,6 +20438,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 8ae19d83bb4a2478fb07138c52316363, type: 2}
   pocketNumberText: {fileID: 659447426}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &1363184750
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20978,6 +21036,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 319be1a46f5a14d2b8f2e52b65382611, type: 2}
   pocketNumberText: {fileID: 1177248890}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &1387327662
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21607,6 +21667,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 169e55d0f15b347f495e37a281de76d4, type: 2}
   pocketNumberText: {fileID: 1843553494}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &1465138238
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22068,6 +22130,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: ecbb27277f0c44088b361ed43356572a, type: 2}
   pocketNumberText: {fileID: 1534855126}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &1500964931
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24187,6 +24251,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 824d3593ff65249358af07829e477827, type: 2}
   pocketNumberText: {fileID: 395848769}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &1621902474
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24833,6 +24899,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: a2119cac6eb614b56b25ed600a5c79c7, type: 2}
   pocketNumberText: {fileID: 1288204937}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &1675018369
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26264,6 +26332,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 05ff5206bd90d4b52950a16276deddf5, type: 2}
   pocketNumberText: {fileID: 2113947981}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &1750077203
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29402,6 +29472,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 50ecd6cd1cd514468a7cd654dc72e861, type: 2}
   pocketNumberText: {fileID: 159553954}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &1912302987
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29605,6 +29677,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: e8f655560c06546b9a1a117a54b9588a, type: 2}
   pocketNumberText: {fileID: 579111856}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &1921110961
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30731,6 +30805,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 23bc7b728a05e4000a649fa069edcf28, type: 2}
   pocketNumberText: {fileID: 1175318716}
+  activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &2053873075
 BoxCollider:
   m_ObjectHideFlags: 0
