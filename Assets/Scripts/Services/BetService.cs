@@ -1,20 +1,33 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using NCGames.Data;
 using NCGames.Enums;
+using NCGames.Events.Bet;
+using NCGames.Managers;
+using UnityEngine;
 
 namespace NCGames.Services
 {
+    [Serializable]
     public class BetService
     {
+        [Serializable]
         public struct Bet
         {
-            public BetType betType;
-            public int[] numbers;
-            public float amount;
+            [SerializeField] public BetType betType;
+            [SerializeField] public int[] numbers;
+            [SerializeField] public int amount;
         }
 
-        public List<Bet> currentBets;
+        [SerializeField] public List<Bet> currentBets;
 
-        public void PlaceBet(BetType betType, int[] numbers, float amount)
+        public BetService()
+        {
+            currentBets = new List<Bet>();
+        }
+        
+        public void PlaceBet(BetType betType, int[] numbers, int amount)
         {
             Bet newBet = new Bet
             {
@@ -24,6 +37,53 @@ namespace NCGames.Services
             };
 
             currentBets.Add(newBet);
+            ServiceContainer.Instance.EventPublisherService.Publish(new OnBetUpdatedEvent());
+        }
+        
+        public Bet? GetBet(BetData currentBetData)
+        {
+            foreach (var bet in currentBets)
+            {
+                if (bet.betType == currentBetData.betType && 
+                    
+                    bet.numbers.SequenceEqual(currentBetData.numbersOfBet))
+                {
+                    return bet;
+                }
+            }
+            return null;
+        }
+        
+        public void UpdateBet(Bet updateBet, int newAmount)
+        {
+            for (int i = 0; i < currentBets.Count; i++)
+            {
+                if (currentBets[i].betType == updateBet.betType &&
+                    currentBets[i].numbers.SequenceEqual(updateBet.numbers))
+                {
+                    currentBets[i] = new Bet
+                    {
+                        betType = updateBet.betType,
+                        numbers = updateBet.numbers,
+                        amount = newAmount
+                    };
+                    break;
+                }
+            }
+            
+            ServiceContainer.Instance.EventPublisherService.Publish(new OnBetUpdatedEvent());
+        }
+        
+        public void RemoveBet(Bet? currentBet)
+        {
+            if (currentBet.HasValue)
+            {
+                currentBets.RemoveAll(bet => 
+                    bet.betType == currentBet.Value.betType &&
+                    bet.numbers.SequenceEqual(currentBet.Value.numbers));
+            }
+            
+            ServiceContainer.Instance.EventPublisherService.Publish(new OnBetUpdatedEvent());
         }
 
         public float EvaluateBets(int winningNumber)
@@ -36,7 +96,7 @@ namespace NCGames.Services
                     totalPayout += bet.amount * GetPayoutMultiplier(bet.betType);
                 }
             }
-
+            LogManager.Log("Total payout: " + totalPayout,LogManager.LogLevel.Development);
             return totalPayout;
         }
 
@@ -60,5 +120,8 @@ namespace NCGames.Services
                 default: return 0f;
             }
         }
+
+
+        
     }
 }

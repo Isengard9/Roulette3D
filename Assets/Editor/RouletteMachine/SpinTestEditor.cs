@@ -3,20 +3,20 @@ using UnityEngine;
 
 namespace NCGames.Editor
 {
-    [CustomEditor(typeof(SpinTest))]
+    [CustomEditor(typeof(RouletteController))]
     public class SpinTestEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
 
-            SpinTest spinTest = (SpinTest)target;
+            RouletteController rouletteController = (RouletteController)target;
 
             if (GUILayout.Button("Start Spin"))
             {
-                if (!spinTest.IsSpinning)
+                if (!rouletteController.IsSpinning)
                 {
-                    spinTest.StartSpin();
+                    rouletteController.StartSpin();
                 }
                 else
                 {

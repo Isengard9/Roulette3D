@@ -51,7 +51,6 @@ namespace NCGames.Controllers.UI
 
         private void HandleButtonClick()
         {
-            LogManager.Log($"Button clicked: {name}", LogManager.LogLevel.Development, gameObject);
             OnButtonClicked?.Invoke();
             ServiceContainer.Instance.EventPublisherService.Publish(_buttonClickedEvent);
         }

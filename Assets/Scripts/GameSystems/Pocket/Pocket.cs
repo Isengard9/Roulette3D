@@ -12,13 +12,17 @@ namespace NCGames.GameSystems
     public class Pocket : MonoBehaviour
     {
         [SerializeField] private PocketSO data;
+        public PocketSO Data => data;
         [SerializeField] private TMP_Text pocketNumberText;
-
+        
+        private bool isPocketActive;
+        public bool IsPocketActive => isPocketActive;
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Ball"))
             {
                 pocketNumberText.color = Color.yellow;
+                isPocketActive = true;
             }
         }
 
@@ -27,6 +31,7 @@ namespace NCGames.GameSystems
             if (other.CompareTag("Ball"))
             {
                 pocketNumberText.color = Color.white;
+                isPocketActive = false;
             }
         }
 

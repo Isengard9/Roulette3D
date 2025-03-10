@@ -1,20 +1,25 @@
-using System;
-using NCGames.Enums;
+using NCGames.Data;
+using NCGames.Events.Popup;
 using NCGames.Managers;
+using NCGames.Services;
 using UnityEngine;
 
 namespace NCGames.Controllers.UI
 {
+    
+    
     [RequireComponent(typeof(CustomButtonController))]
     public class BetButtonController : MonoBehaviour
     {
-        [SerializeField] private BetType betType;
         [SerializeField] private CustomButtonController buttonController;
-        [SerializeField] private int[] numbersOfBet;
+
+        [SerializeField] private BetData _data;
+        public BetData Data => _data;
         private void Awake()
         {
             Initialize();
         }
+
 
         private void Initialize()
         {
@@ -35,7 +40,11 @@ namespace NCGames.Controllers.UI
 
         private void HandleButtonClick()
         {
-            LogManager.Log($"Bet button clicked: {betType}", LogManager.LogLevel.Development, gameObject);
+            LogManager.Log($"Bet button clicked: {_data.betType}", LogManager.LogLevel.Development, gameObject);
+            ServiceContainer.Instance.EventPublisherService.Publish(new OnTokenPopupOpenEvent()
+            {
+                BetData = _data
+            });
         }
     }
 }

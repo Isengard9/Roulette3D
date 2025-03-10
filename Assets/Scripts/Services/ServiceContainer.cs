@@ -6,13 +6,16 @@ namespace NCGames.Services
 {
     public class ServiceContainer : Singleton<ServiceContainer>
     {
-        private BetService _betService;
+        [SerializeField] private BetService _betService;
         public BetService BetService => _betService;
 
-        private EventPublisherService _eventPublisherService;
+        [SerializeField] private EventPublisherService _eventPublisherService;
         public EventPublisherService EventPublisherService => _eventPublisherService;
+        
+        [SerializeField] private GameService _gameService;
+        public GameService GameService => _gameService;
 
-        private void Start()
+        private void Awake()
         {
             _betService = new BetService();
             _eventPublisherService = new EventPublisherService();

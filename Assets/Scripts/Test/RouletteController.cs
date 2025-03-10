@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
+using NCGames.Events.Game;
+using NCGames.Services;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace NCGames
 {
-    public class SpinTest : MonoBehaviour
+    public class RouletteController : MonoBehaviour
     {
         private static readonly int RotateSpeedParameter = Animator.StringToHash("RotateSpeed");
         public Animator animator;
@@ -46,7 +50,23 @@ namespace NCGames
             rotateSpeed = 0;
             animator.SetFloat(RotateSpeedParameter, rotateSpeed);
             Debug.Log("Spin is over");
+            ServiceContainer.Instance.EventPublisherService.Publish(new OnRouletteStoppedEvent());
             spinCoroutine = null;
+        }
+
+        private void OnEnable()
+        {
+            ServiceContainer.Instance.EventPublisherService.Subscribe<OnGameStartEvent>(OnGameStart);
+        }
+        
+        private void OnDisable()
+        {
+            ServiceContainer.Instance?.EventPublisherService.Unsubscribe<OnGameStartEvent>(OnGameStart);
+        }
+        
+        private void OnGameStart(OnGameStartEvent e)
+        {
+            StartSpin();
         }
     }
 }
