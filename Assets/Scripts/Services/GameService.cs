@@ -38,10 +38,10 @@ namespace NCGames.Services
 
         private void SubscribeToEvents()
         {
-            var eventService = ServiceContainer.Instance.EventPublisherService;
-            eventService.Subscribe<OnBetUpdatedEvent>(OnBetUpdated);
-            eventService.Subscribe<OnRouletteStoppedEvent>(OnRouletteStopped);
-            eventService.Subscribe<OnBallStoppedEvent>(OnBallStopped);
+            ServiceContainer.Instance.EventPublisherService.Subscribe<OnBetUpdatedEvent>(OnBetUpdated);
+            ServiceContainer.Instance.EventPublisherService.Subscribe<OnRouletteStoppedEvent>(OnRouletteStopped);
+            ServiceContainer.Instance.EventPublisherService.Subscribe<OnBallStoppedEvent>(OnBallStopped);
+            ServiceContainer.Instance.EventPublisherService.Subscribe<ResetGameEvent>(ResetGame);
             playButton.OnButtonClicked += OnPlayButtonClicked;
         }
 
@@ -49,10 +49,10 @@ namespace NCGames.Services
         {
             if (ServiceContainer.Instance?.EventPublisherService != null)
             {
-                var eventService = ServiceContainer.Instance.EventPublisherService;
-                eventService.Unsubscribe<OnBetUpdatedEvent>(OnBetUpdated);
-                eventService.Unsubscribe<OnRouletteStoppedEvent>(OnRouletteStopped);
-                eventService.Unsubscribe<OnBallStoppedEvent>(OnBallStopped);
+                ServiceContainer.Instance.EventPublisherService.Unsubscribe<OnBetUpdatedEvent>(OnBetUpdated);
+                ServiceContainer.Instance.EventPublisherService.Unsubscribe<OnRouletteStoppedEvent>(OnRouletteStopped);
+                ServiceContainer.Instance.EventPublisherService.Unsubscribe<OnBallStoppedEvent>(OnBallStopped);
+                ServiceContainer.Instance.EventPublisherService.Unsubscribe<ResetGameEvent>(ResetGame);
             }
             
             if (playButton != null)
@@ -106,6 +106,16 @@ namespace NCGames.Services
         {
             _isBallRolling = false;
             CheckGameCompletion();
+        }
+        
+        /// <summary>
+        ///  Resets the game state when a new game is started.
+        ///  </summary>
+        private void ResetGame(ResetGameEvent e)
+        {
+            _isRouletteSpinning = false;
+            _isBallRolling = false;
+            playButton.interactable = true;
         }
 
         #endregion

@@ -137,7 +137,7 @@ namespace NCGames.Controllers.UI.Popup.TokenPopup
         private void OnTokenPopupOpen(OnTokenPopupOpenEvent e)
         {
             LogManager.Log("Token Popup Opened", LogManager.LogLevel.Development, gameObject);
-            
+            _totalAmount = 0;
             if (_tokenPopupAnimator != null)
                 _tokenPopupAnimator.SetTrigger(Open);
                 
@@ -159,8 +159,10 @@ namespace NCGames.Controllers.UI.Popup.TokenPopup
                 if (baseTokenController != null)
                 {
                     baseTokenController.InitializeController(_currentBet.Value.amount);
+                    _totalAmount = _currentBet.Value.amount;
                 }
             }
+            UpdateAmountText();
         }
 
         /// <summary>

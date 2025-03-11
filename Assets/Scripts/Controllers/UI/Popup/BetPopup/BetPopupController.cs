@@ -1,4 +1,5 @@
 using System;
+using NCGames.Events.Game;
 using NCGames.Events.Popup;
 using NCGames.Services;
 using UnityEngine;
@@ -62,6 +63,7 @@ namespace NCGames.Controllers.UI.Popup.BetPopup
         {
             ServiceContainer.Instance.EventPublisherService.Subscribe<OnBetPopupOpenEvent>(OnBetPopupOpen);
             ServiceContainer.Instance.EventPublisherService.Subscribe<OnBetPopupCloseEvent>(OnBetPopupClose);
+            ServiceContainer.Instance.EventPublisherService.Subscribe<ResetGameEvent>(ResetGame);
         }
 
         /// <summary>
@@ -71,6 +73,7 @@ namespace NCGames.Controllers.UI.Popup.BetPopup
         {
             ServiceContainer.Instance?.EventPublisherService.Unsubscribe<OnBetPopupOpenEvent>(OnBetPopupOpen);
             ServiceContainer.Instance?.EventPublisherService.Unsubscribe<OnBetPopupCloseEvent>(OnBetPopupClose);
+            ServiceContainer.Instance?.EventPublisherService.Unsubscribe<ResetGameEvent>(ResetGame);
         }
 
         /// <summary>
@@ -95,6 +98,11 @@ namespace NCGames.Controllers.UI.Popup.BetPopup
             {
                 _animator.SetTrigger(Close);
             }
+        }
+        
+        private void ResetGame(ResetGameEvent e)
+        {
+            _animator.SetTrigger(Open);
         }
 
         #endregion

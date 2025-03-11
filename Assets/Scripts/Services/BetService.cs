@@ -28,7 +28,8 @@ namespace NCGames.Services
         }
 
         [SerializeField] public List<Bet> currentBets;
-
+        [SerializeField] private int _currentBalance;
+        public int CurrentBalance => _currentBalance;
         /// <summary>
         /// Initializes a new instance of the BetService.
         /// </summary>
@@ -36,6 +37,15 @@ namespace NCGames.Services
         {
             currentBets = new List<Bet>();
         }
+
+        #region Update Balance
+
+        public void UpdateBalance(int newBalance)
+        {
+            _currentBalance = newBalance;
+        }
+
+        #endregion
 
         #region Bet Management
 
@@ -134,16 +144,16 @@ namespace NCGames.Services
         /// </summary>
         /// <param name="winningNumber">The winning number from the roulette spin</param>
         /// <returns>Total payout amount</returns>
-        public float EvaluateBets(int winningNumber)
+        public int EvaluateBets(int winningNumber)
         {
-            float totalPayout = 0;
+            int totalPayout = 0;
             
             foreach (Bet bet in currentBets)
             {
                 if (Array.Exists(bet.numbers, number => number == winningNumber))
                 {
-                    float payoutMultiplier = GetPayoutMultiplier(bet.betType);
-                    float betPayout = bet.amount * payoutMultiplier;
+                    int payoutMultiplier = GetPayoutMultiplier(bet.betType);
+                    int betPayout = bet.amount * payoutMultiplier;
                     totalPayout += betPayout;
                     
                     LogManager.Log($"Won bet: {bet.betType} with {bet.amount} chips, payout: {betPayout}",
@@ -160,16 +170,16 @@ namespace NCGames.Services
         /// </summary>
         /// <param name="betType">Type of bet</param>
         /// <returns>The multiplier value for calculating winnings</returns>
-        private float GetPayoutMultiplier(BetType betType)
+        public int GetPayoutMultiplier(BetType betType)
         {
             switch (betType)
             {
                 // Inside bets (higher risk/reward)
-                case BetType.Straight: return 35f;  // Single number
-                case BetType.Split: return 17f;     // Two adjacent numbers
-                case BetType.Street: return 11f;    // Three numbers in a row
-                case BetType.Corner: return 8f;     // Four numbers in a square
-                case BetType.SixLine: return 5f;    // Six numbers (two rows)
+                case BetType.Straight: return 35;  // Single number
+                case BetType.Split: return 17;     // Two adjacent numbers
+                case BetType.Street: return 11;    // Three numbers in a row
+                case BetType.Corner: return 8;     // Four numbers in a square
+                case BetType.SixLine: return 5;    // Six numbers (two rows)
                 
                 // Outside bets (lower risk/reward)
                 case BetType.Red:
@@ -177,17 +187,26 @@ namespace NCGames.Services
                 case BetType.Even:
                 case BetType.Odd:
                 case BetType.High:
-                case BetType.Low: return 1f;        // Even money bets
+                case BetType.Low: return 1;        // Even money bets
                 
                 case BetType.Dozens:                // 1-12, 13-24, 25-36
-                case BetType.Columns: return 2f;    // Column bets
+                case BetType.Columns: return 2;    // Column bets
                 
                 default:
                     LogManager.Log($"Unknown bet type: {betType}", LogManager.LogLevel.Error);
-                    return 0f;
+                    return 0;
             }
         }
         
+        #endregion
+
+        #region Reset Bets
+
+        public void ResetBets()
+        {
+            currentBets.Clear();
+        }
+
         #endregion
     }
 }
